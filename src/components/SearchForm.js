@@ -1,14 +1,27 @@
 import React, { useState } from 'react';
+/** Components */
+import Error from './Error';
 
 const SearchForm = () => {
 
     /** Hook: Define State */
-    const [ searchTerm, setSearchTerm ] = useState( '' );
+    const 
+        [ searchTerm, setSearchTerm ] = useState( '' ),
+        [ error, setError ] = useState( false );
 
     /** Methods */
     const submitSearch = event => {
         event .preventDefault();
         console .log( 'Termino de busqueda', searchTerm );
+
+        /** Validate field */
+        if ( searchTerm .trim() === '' ) {
+            setError( true );
+            return;
+        }
+        setError( false );
+
+        /** Actualiza State Componente Padre */
     }
 
     return (
@@ -24,12 +37,16 @@ const SearchForm = () => {
                         aria-describedby="searchHelp"
                         onChange={ event => setSearchTerm( event .target .value ) }
                     />
-                    <small id="searchHelp" className="form-text text-muted">Escribe una palabra que describa tu búsqueda.</small>
+                    { error 
+                        ?   <Error message="Ingresa un término de búsqueda" />
+                        :   null
+                    }
                 </div>
                 <div className="form-group col-md-4">
                     <button type="submit" className="btn btn-warning btn-lg btn-block">Buscar</button>
                 </div>
             </div>
+
         </form>
     );
 }
