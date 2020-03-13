@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+/** Components */
 import SearchForm from './components/SearchForm';
+import ResultsList from './components/ResultsList';
 
 function App() {
 
   /** Hook: Define State */
   const [ term, setTerm ] = useState( '' ),
-        [ apiData, setApiData ] = useState( {} );
+        [ apiData, setApiData ] = useState( [] );
 
   /** Hook: Traking State */
   useEffect( () => {
@@ -17,21 +19,17 @@ function App() {
 
       /** Request API */
       const 
-        resultsPerPage = 18,
+        resultsPerPage = 9,
         apiKey = '9109568-ff204efa6ca38fb149b4fe7d6',
         url = `https://pixabay.com/api/?key=${ apiKey }&q=${ term }&per_page=${ resultsPerPage }`,
         response = await fetch( url ),
         data = await response .json();
 
         console .log( 'Data Pixabay', data );
-        setApiData( data );
+        setApiData( data .hits );
 
     }
     getApiData();
-
-    
-
-
 
   }, [ term ] );
 
@@ -44,6 +42,12 @@ function App() {
 
             <SearchForm 
               setTerm={ setTerm }
+            />
+        </div>
+
+        <div className="row justify-content-center">
+            <ResultsList 
+                resultsList={ apiData }
             />
         </div>
     </div>
