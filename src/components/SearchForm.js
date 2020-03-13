@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 /** Components */
 import Error from './Error';
 
-const SearchForm = () => {
+const SearchForm = ({ setTerm }) => {     // Destructuring Props
 
     /** Hook: Define State */
     const 
@@ -22,6 +22,7 @@ const SearchForm = () => {
         setError( false );
 
         /** Actualiza State Componente Padre */
+        setTerm( searchTerm );
     }
 
     return (
