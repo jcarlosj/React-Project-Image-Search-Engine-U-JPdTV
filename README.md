@@ -1,3 +1,9 @@
+# Images search engine
+
+Este proyecto consume la API https://pixabay.com/es/ a través de la cual podemos consultar las imagenes de acuerdo a un término de búsqueda proporcionado a través del formulario.
+
+La funcionalidad se desarrolla haciendo uso de conceptos como Components (Carga Condicional), Props, State, Hook (useState, useEffect), Paginación en React. (v.16.12.0). 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
