@@ -23,7 +23,7 @@ function App() {
       const 
         resultsPerPage = 30,
         apiKey = '9109568-ff204efa6ca38fb149b4fe7d6',
-        url = `https://pixabay.com/api/?key=${ apiKey }&q=${ term }&per_page=${ resultsPerPage }`,
+        url = `https://pixabay.com/api/?key=${ apiKey }&q=${ term }&per_page=${ resultsPerPage }&page=${ actualPage }`,
         response = await fetch( url ),
         data = await response .json();
 
@@ -34,7 +34,7 @@ function App() {
     }
     getApiData();
 
-  }, [ term ] );
+  }, [ term, actualPage ] );
 
     /** Methods */
     const onClickPreviousPage = () => {
@@ -77,20 +77,28 @@ function App() {
 
                 <nav aria-label="...">
                     <ul className="pagination">
-                        <li className="page-item">
-                            <a 
-                                className="page-link" 
-                                href="#"
-                                onClick={ onClickPreviousPage }
-                            >Anterior</a>
-                        </li>
-                        <li className="page-item">
-                            <a 
-                                className="page-link" 
-                                href="#"
-                                onClick={ onClickNextPage }
-                            >Siguiente</a>
-                        </li>
+                        { actualPage === 1
+                            ?   null
+                            :   (   <li className="page-item">
+                                        <a 
+                                            className="page-link" 
+                                            href="#"
+                                            onClick={ onClickPreviousPage }
+                                        >Anterior</a>
+                                    </li> 
+                                )
+                        }
+                        { actualPage === totalPages
+                            ?   null
+                            :   (   <li className="page-item">
+                                        <a 
+                                            className="page-link" 
+                                            href="#"
+                                            onClick={ onClickNextPage }
+                                        >Siguiente</a>
+                                    </li>
+                                )  
+                        }
                     </ul>
                 </nav>
             </div>
