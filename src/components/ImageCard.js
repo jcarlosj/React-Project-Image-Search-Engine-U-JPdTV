@@ -12,11 +12,13 @@ const ImageCard = ({ image }) => {      // Destructuring Props
                 <div className="card-img-overlay"><i className="fas fa-heart"><span>{ likes }</span></i></div>
                 <div className="card-body">
                     <h5 className="card-title">{ user }</h5>
-                    <a
-                        target="_blank"
-                        className="btn btn-warning btn-block"
-                        rel="noopener noreferrer"
-                        href={ largeImageURL }
+                </div>
+                <div className="card-footer">
+                <a
+                    target="_blank"
+                    className="btn btn-warning btn-block"
+                    rel="noopener noreferrer"
+                    href={ largeImageURL }
                     >Ver original</a>
                 </div>
             </div>

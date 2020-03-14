@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+.card .card-img-overlay {
+  bottom: unset;
+  left: unset;
+}
 .card .card-img-overlay,
 .card .card-body {
   padding: .7rem;

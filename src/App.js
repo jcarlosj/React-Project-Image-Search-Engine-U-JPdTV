@@ -7,7 +7,9 @@ function App() {
 
   /** Hook: Define State */
   const [ term, setTerm ] = useState( '' ),
-        [ apiData, setApiData ] = useState( [] );
+        [ apiData, setApiData ] = useState( [] ),
+        [ actualPage, setActualPage ] = useState( 1 ),
+        [ totalPages, setTotalPages ] = useState( 1 );
 
   /** Hook: Traking State */
   useEffect( () => {
@@ -19,7 +21,7 @@ function App() {
 
       /** Request API */
       const 
-        resultsPerPage = 9,
+        resultsPerPage = 30,
         apiKey = '9109568-ff204efa6ca38fb149b4fe7d6',
         url = `https://pixabay.com/api/?key=${ apiKey }&q=${ term }&per_page=${ resultsPerPage }`,
         response = await fetch( url ),
@@ -27,11 +29,28 @@ function App() {
 
         console .log( 'Data Pixabay', data );
         setApiData( data .hits );
+        setTotalPages( Math .ceil( data .totalHits / resultsPerPage ) );     // totalHits: Registros disponibles en la version gratuita de la API
 
     }
     getApiData();
 
   }, [ term ] );
+
+    /** Methods */
+    const onClickPreviousPage = () => {
+        const page = actualPage - 1;
+
+        if( page === 0 ) return;
+
+        setActualPage( page );
+    }
+    const onClickNextPage = () => {
+        const page = actualPage + 1;
+
+        if( page > totalPages ) return;
+
+        setActualPage( page );
+    }
 
   return (
     <Fragment>
@@ -55,6 +74,25 @@ function App() {
                 <ResultsList 
                     resultsList={ apiData }
                 />
+
+                <nav aria-label="...">
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <a 
+                                className="page-link" 
+                                href="#"
+                                onClick={ onClickPreviousPage }
+                            >Anterior</a>
+                        </li>
+                        <li className="page-item">
+                            <a 
+                                className="page-link" 
+                                href="#"
+                                onClick={ onClickNextPage }
+                            >Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </Fragment>
