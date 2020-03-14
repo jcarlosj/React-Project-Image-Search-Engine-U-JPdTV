@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 /** Components */
 import SearchForm from './components/SearchForm';
 import ResultsList from './components/ResultsList';
@@ -34,23 +34,30 @@ function App() {
   }, [ term ] );
 
   return (
-    <div className="container mt-3">
+    <Fragment>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <a className="navbar-brand" href="#">Imágenes <small><small>using </small><strong>Pixabay</strong></small></a>
+        </nav>
+        
         <div className="jumbotron">
-            <h1 className="display-4">Búsqueda de imágenes</h1>
-            <p className="lead">Podrás encontrar miles de imágenes totalmente gratuitas de Pixabay, para que puedas usar en tus proyectos.</p>
-            <hr className="my-4" />
+            <div className="container">
+                <h3 className="display-4">Búsqueda de imágenes</h3>
+                <p className="lead">Podrás encontrar miles de imágenes totalmente gratuitas de Pixabay, para que puedas usar en tus proyectos.</p>
+                <hr className="my-4" />
 
-            <SearchForm 
-              setTerm={ setTerm }
-            />
+                <SearchForm 
+                setTerm={ setTerm }
+                />
+            </div>
         </div>
-
-        <div className="row justify-content-center">
-            <ResultsList 
-                resultsList={ apiData }
-            />
+        <div className="container mt-3">
+            <div className="row justify-content-center">
+                <ResultsList 
+                    resultsList={ apiData }
+                />
+            </div>
         </div>
-    </div>
+    </Fragment>
   );
 }
 

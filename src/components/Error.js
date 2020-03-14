@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Error = ({ message }) => (        // Destructuring Props
-    <small id="searchHelp" className="form-text text-danger">{ message }</small>
+    <div class="alert alert-danger" role="alert">{ message }</div>
 );
 
 export default Error;

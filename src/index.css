@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card .card-img-overlay,
+.card .card-body {
+  padding: .7rem;
+}
+
+.fas.fa-heart {
+  background-color: #FF7518;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: .3rem .7rem;
+}
+.fas.fa-heart span {
+  padding-left: .3rem;
+}
