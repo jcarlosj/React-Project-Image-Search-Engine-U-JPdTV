@@ -31,6 +31,12 @@ function App() {
         setApiData( data .hits );
         setTotalPages( Math .ceil( data .totalHits / resultsPerPage ) );     // totalHits: Registros disponibles en la version gratuita de la API
 
+        /** Desplazamiento hacia arriba animado */
+        const elJumbotron = document .querySelector( '.jumbotron' );
+        elJumbotron .scrollIntoView({
+            behavior: 'smooth'
+        });
+
     }
     getApiData();
 
